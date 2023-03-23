@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Layout from '@/components/Layout'
 import ChartWrapper from '@/components/ChartWrapper'
-import LineChartSingle from '@/components/charts/LineChartSingle'
+import VerticalBarChart from '@/components/charts/VerticalBarChart'
 
 export default function Home() {
     return (
@@ -14,7 +14,7 @@ export default function Home() {
                     title="Types of issues occurring"
                     description="Number of issues by year"
                 >
-                    <LineChartSingle />
+                    <VerticalBarChart />
                 </ChartWrapper>
             </Layout>
         </>

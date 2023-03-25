@@ -25,6 +25,18 @@ const getChartTheme = (theme = 'light') => {
                 opacity: 0.04,
                 width: 4,
             },
+            style: {
+                color: colors.fg.default,
+            },
+        },
+        legend: {
+            itemStyle: {
+                color: colors.fg.muted,
+                fontWeight: 'regular',
+            },
+            itemHoverStyle: {
+                color: colors.fg.default,
+            },
         },
         credits: {
             enabled: false,
@@ -45,10 +57,24 @@ const getChartTheme = (theme = 'light') => {
             spline: {
                 animation: false,
             },
+            bar: {
+                borderColor: colors.border.default,
+            },
+            column: {
+                borderColor: colors.border.default,
+            },
         },
         xAxis: {
             tickWidth: 0,
-            lineWidth: 0,
+            lineWidth: 1,
+            gridLineColor: colors.border.subtle,
+            lineColor: colors.border.default,
+        },
+        yAxis: {
+            tickWidth: 0,
+            gridLineColor: colors.border.subtle,
+            lineWidth: 1,
+            lineColor: colors.border.default,
         },
     }
 }

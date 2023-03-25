@@ -30,7 +30,7 @@ function StackedArea() {
             shared: true,
             headerFormat:
                 '<span style="font-size:12px"><b>{point.key}</b></span><br>',
-            backgroundColor: colors.canvas.default,
+            ...chartTheme.tooltip,
         },
         legend: {
             align: 'left',

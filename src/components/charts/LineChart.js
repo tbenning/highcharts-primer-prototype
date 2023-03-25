@@ -25,13 +25,16 @@ function LineChart() {
             itemStyle: {
                 fontWeight: 'regular',
                 font: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+                ...chartTheme.legend.itemStyle,
             },
+            ...chartTheme.legend,
         },
         yAxis: {
             title: {
                 text: 'Issues',
             },
-            opposite: true,
+            // opposite: true,
+            ...chartTheme.yAxis,
         },
         title: {
             text: undefined,

@@ -20,11 +20,13 @@ const HorizontalBarChart = () => {
         },
         xAxis: {
             categories: ['Sept 3', 'Sept 10', 'Sept 17', 'Sept 24'],
+            ...chartTheme.xAxis,
         },
         yAxis: {
             title: {
                 text: 'Issues',
             },
+            ...chartTheme.yAxis,
         },
         legend: {
             enabled: false,
@@ -32,8 +34,8 @@ const HorizontalBarChart = () => {
         plotOptions: {
             bar: {
                 borderRadius: 4,
+                ...chartTheme.plotOptions.bar,
             },
-            ...chartTheme.plotOptions,
         },
         series: [
             {

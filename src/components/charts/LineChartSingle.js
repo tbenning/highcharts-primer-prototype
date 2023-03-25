@@ -26,6 +26,7 @@ const LineChartSingle = () => {
             title: {
                 text: 'Issues',
             },
+            ...chartTheme.yAxis,
         },
         title: {
             text: undefined,

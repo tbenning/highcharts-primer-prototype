@@ -16,11 +16,13 @@ function VerticalBarChart() {
         xAxis: {
             title: { text: 'Dates' },
             categories: ['Sept 3', 'Sept 10', 'Sept 17', 'Sept 24'],
+            ...chartTheme.xAxis,
         },
         yAxis: {
             title: {
                 text: 'Issues',
             },
+            ...chartTheme.yAxis,
         },
         legend: {
             enabled: false,
@@ -38,6 +40,7 @@ function VerticalBarChart() {
             column: {
                 borderRadius: 4,
                 animation: false,
+                ...chartTheme.plotOptions.column,
             },
         },
     }

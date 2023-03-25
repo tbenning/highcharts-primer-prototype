@@ -1,30 +1,19 @@
-import React from 'react'
-import { render } from 'react-dom'
+import React, { useEffect } from 'react'
+import { useTheme } from '@primer/react'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import getChartTheme from './chartTheme'
 import primitives from '@primer/primitives'
 
-const colors = primitives.colors.light
-
 function LineChart() {
     const theme = useTheme()
-    const chartTheme = getChartTheme(theme)
-    console.log({ theme })
-
-    Highcharts.setOptions({
-        global: {
-            style: {
-                fontFamily: 'Times New Roman',
-            },
-        },
-    })
-
-    const [options, setOptions] = React.useState({
-        ...getChartTheme(theme),
+    const chartTheme = getChartTheme(theme.colorScheme)
+    const options = {
+        ...chartTheme,
         chart: {
             type: 'spline',
             spacing: 0,
+            ...chartTheme.chart,
         },
         labels: {
             align: 'left',
@@ -46,9 +35,6 @@ function LineChart() {
         },
         title: {
             text: undefined,
-            align: 'left',
-            style: { fontWeight: 'bold' },
-            useHTML: true,
         },
         plotOptions: {
             series: {
@@ -59,6 +45,7 @@ function LineChart() {
                     enabled: false,
                 },
             },
+            ...chartTheme.plotOptions,
         },
         series: [
             {
@@ -83,14 +70,9 @@ function LineChart() {
                 // color: colors.scale.pink[5],
             },
         ],
-    })
+    }
 
-    return (
-        <div>
-            <h1>test</h1>
-            <HighchartsReact highcharts={Highcharts} options={options} />
-        </div>
-    )
+    return <HighchartsReact highcharts={Highcharts} options={options} />
 }
 
 export default LineChart

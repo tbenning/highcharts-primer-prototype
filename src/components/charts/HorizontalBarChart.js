@@ -1,49 +1,53 @@
 import React from 'react'
-import { render } from 'react-dom'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import getChartTheme from './chartTheme'
 import primitives from '@primer/primitives'
+import { useTheme } from '@primer/react'
 
-const colors = primitives.colors.light
-
-const chartTheme = getChartTheme()
-const options = {
-    ...chartTheme,
-    chart: {
-        type: 'bar',
-    },
-    title: {
-        text: undefined,
-    },
-    xAxis: {
-        categories: ['Sept 3', 'Sept 10', 'Sept 17', 'Sept 24'],
-    },
-    yAxis: {
+const HorizontalBarChart = () => {
+    const colors = primitives.colors.light
+    const theme = useTheme()
+    const chartTheme = getChartTheme(theme.colorScheme)
+    const options = {
+        ...chartTheme,
+        chart: {
+            type: 'bar',
+            ...chartTheme.chart,
+        },
         title: {
-            text: 'Issues',
+            text: undefined,
         },
-    },
-    legend: {
-        enabled: false,
-    },
-    plotOptions: {
-        column: {
-            borderRadius: 4,
+        xAxis: {
+            categories: ['Sept 3', 'Sept 10', 'Sept 17', 'Sept 24'],
         },
-    },
-    series: [
-        {
-            data: [1, 2, 1, 4],
-            color: colors.scale.blue[5],
+        yAxis: {
+            title: {
+                text: 'Issues',
+            },
         },
-    ],
-}
+        legend: {
+            enabled: false,
+        },
+        plotOptions: {
+            bar: {
+                borderRadius: 4,
+            },
+            ...chartTheme.plotOptions,
+        },
+        series: [
+            {
+                data: [1, 2, 1, 4],
+                color: colors.scale.blue[5],
+            },
+        ],
+    }
 
-const HorizontalBarChart = () => (
-    <div>
-        <HighchartsReact highcharts={Highcharts} options={options} />
-    </div>
-)
+    return (
+        <div>
+            <HighchartsReact highcharts={Highcharts} options={options} />
+        </div>
+    )
+}
 
 export default HorizontalBarChart

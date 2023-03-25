@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
     ActionMenu,
     ActionList,
@@ -6,8 +6,11 @@ import {
     Heading,
     IconButton,
     Text,
+    RelativeTime,
+    Label,
+    LabelGroup,
 } from '@primer/react'
-import { Dialog } from '@primer/react/drafts'
+import { Dialog, DataTable, Table } from '@primer/react/drafts'
 import { KebabHorizontalIcon } from '@primer/octicons-react'
 
 export default function ChartWrapper({
@@ -18,7 +21,6 @@ export default function ChartWrapper({
     height = '400px',
 }) {
     const [dialogOpen, setDialogOpen] = React.useState(false)
-    const returnFocusRef = React.useRef(null)
     return (
         <Box
             p={3}
@@ -27,6 +29,7 @@ export default function ChartWrapper({
             border="1px solid"
             borderColor="border.default"
             borderRadius="6px"
+            width="100%"
         >
             <Box
                 display="flex"
@@ -54,7 +57,6 @@ export default function ChartWrapper({
                             icon={KebabHorizontalIcon}
                             variant="invisible"
                             size="small"
-                            ref={returnFocusRef}
                         />
                     </ActionMenu.Anchor>
                     <ActionMenu.Overlay width="small">
@@ -88,12 +90,117 @@ export default function ChartWrapper({
                         onClose={() => setDialogOpen(false)}
                         aria-labelledby="header-id"
                         width="xlarge"
+                        footerButtons={[
+                            {
+                                content: 'Download CSV',
+                                onClick: () => alert('CSV download initiated'),
+                            },
+                        ]}
                     >
-                        <Text fontFamily="sans-serif">Some content</Text>
+                        <RenderDataTable />
                     </Dialog>
                 )}
             </Box>
             {children}
         </Box>
+    )
+}
+
+function RenderDataTable() {
+    const now = Date.now()
+    const Second = 1000
+    const Minute = 60 * Second
+    const Hour = 60 * Minute
+    const Day = 24 * Hour
+    const Week = 7 * Day
+    const Month = 4 * Week
+    function uppercase(input) {
+        return input[0].toUpperCase() + input.slice(1)
+    }
+    const data = [
+        {
+            id: 1,
+            name: 'Issues',
+            issues: 1,
+            updatedAt: 2012,
+        },
+        {
+            id: 2,
+            name: 'Issues',
+            issues: 2,
+            updatedAt: 2013,
+        },
+        {
+            id: 3,
+            name: 'Issues',
+            issues: 1,
+            updatedAt: 2014,
+        },
+        {
+            id: 4,
+            name: 'Issues',
+            issues: 4,
+            updatedAt: 2015,
+        },
+        {
+            id: 5,
+            name: 'Issues',
+            issues: 3,
+            updatedAt: 2016,
+        },
+        {
+            id: 6,
+            name: 'Issues',
+            issues: 6,
+            updatedAt: 2017,
+        },
+        {
+            id: 7,
+            name: 'Issues',
+            issues: 5,
+            updatedAt: 2018,
+        },
+        {
+            id: 8,
+            name: 'Issues',
+            issues: 3,
+            updatedAt: 2019,
+        },
+        {
+            id: 9,
+            name: 'Issues',
+            issues: 2,
+            updatedAt: 2020,
+        },
+        {
+            id: 10,
+            name: 'Issues',
+            issues: 12,
+            updatedAt: 2021,
+        },
+    ]
+    return (
+        <Table.Container>
+            <DataTable
+                aria-labelledby="repositories"
+                aria-describedby="repositories-subtitle"
+                data={data}
+                columns={[
+                    {
+                        header: 'Data Series',
+                        field: 'name',
+                        rowHeader: true,
+                    },
+                    {
+                        header: 'Number of Issues (y)',
+                        field: 'issues',
+                    },
+                    {
+                        header: 'Year (x)',
+                        field: 'updatedAt',
+                    },
+                ]}
+            />
+        </Table.Container>
     )
 }

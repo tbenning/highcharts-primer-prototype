@@ -1592,6 +1592,11 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
+highcharts-accessibility@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/highcharts-accessibility/-/highcharts-accessibility-0.1.7.tgz#6d212546b1113760a28cffacfd8e7a3f7c1040a7"
+  integrity sha512-2hfAuQN8NtGCiq4+F4fG45LT6cwr9YJWAviMZdIlFUEMqn15MRzhuLtJthQU0UM5rfkjBe01/z6zfb7p1b9N4w==
+
 highcharts-react-official@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/highcharts-react-official/-/highcharts-react-official-3.2.0.tgz#42f8f237d73eec6791318efb41237067000cf815"

@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
-import { render } from 'react-dom'
+import { useTheme } from '@primer/react'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import primitives from '@primer/primitives'
 import getChartTheme from './chartTheme'
 
 function StackedArea() {
-    const chartTheme = getChartTheme()
+    const theme = useTheme()
+    const chartTheme = getChartTheme(theme.colorScheme)
     const colors = primitives.colors.light
     const [chartOptions, setChartOptions] = useState({
         ...chartTheme,
@@ -14,6 +15,7 @@ function StackedArea() {
             type: 'area',
             spacing: 0,
             spacingTop: 4,
+            ...chartTheme.chart,
         },
         title: {
             text: undefined,
@@ -47,6 +49,7 @@ function StackedArea() {
                 lineColor: colors.canvas.default,
                 lineWidth: 1,
             },
+            ...chartTheme.plotOptions,
         },
         series: [
             {

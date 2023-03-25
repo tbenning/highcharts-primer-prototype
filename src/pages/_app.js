@@ -2,6 +2,11 @@ import Head from 'next/head'
 import { ThemeProvider, BaseStyles, Box, SSRProvider } from '@primer/react'
 import ColorModeSwitcher from '@/components/ColorModeSwitcher'
 import '@/styles/reset.css'
+import Highcharts from 'highcharts'
+
+if (typeof Highcharts === 'object') {
+    require('highcharts/modules/accessibility')(Highcharts)
+}
 
 export default function App({ Component, pageProps }) {
     return (

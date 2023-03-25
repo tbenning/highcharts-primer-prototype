@@ -1,51 +1,52 @@
 import React from 'react'
-import { render } from 'react-dom'
+import { useTheme } from '@primer/react'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import getChartTheme from './chartTheme'
 
-const chartTheme = getChartTheme()
-
-const options = {
+function VerticalBarChart() {
+  const theme = useTheme()
+  const chartTheme = getChartTheme(theme.colorScheme)
+  // const chartTheme = typeof theme === 'object' ? getChartTheme(theme.colorScheme) : {}
+  const options = {
     ...chartTheme,
-    chart: {
-        type: 'column',
-    },
     title: {
-        text: undefined,
+      text: undefined,
     },
     xAxis: {
-        title: { text: 'Dates' },
-        categories: ['Sept 3', 'Sept 10', 'Sept 17', 'Sept 24'],
+      title: { text: 'Dates' },
+      categories: ['Sept 3', 'Sept 10', 'Sept 17', 'Sept 24'],
     },
     yAxis: {
-        title: {
-            text: 'Issues',
-        },
+      title: {
+        text: 'Issues',
+      },
     },
     legend: {
-        enabled: false,
+      enabled: false,
     },
+    chart: {
+        type: 'column',
+        ...chartTheme.chart,
+      },
     series: [
         {
-            data: [1, 2, 1, 4],
+          data: [1, 2, 1, 4],
         },
-    ],
-    plotOptions: {
+      ],
+      plotOptions: {
         column: {
-            borderRadius: 4,
-            // borderRadiusTopLeft: '50%',
-            // borderRadiusTopRight: '50%',
-            // Border radius plugin
-            // https://github.com/highcharts/rounded-corners
+          borderRadius: 4,
+          animation: false,
         },
-    },
-}
+      },
+  }
 
-const VerticalBarChart = () => (
+  return (
     <div>
-        <HighchartsReact highcharts={Highcharts} options={options} />
+      <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
-)
+  )
+}
 
 export default VerticalBarChart
